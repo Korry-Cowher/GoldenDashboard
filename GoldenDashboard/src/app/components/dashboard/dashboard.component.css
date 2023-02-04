@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .clock-section, .odds-section, .weather-section, .calendar-section {
+    width: 24%;
+  }
+  .event-date {
+    background-color: lightcoral;
+  }

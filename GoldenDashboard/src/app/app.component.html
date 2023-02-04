@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div class="section odds-section">
+    <h2>{{ today | date: 'MMMM d, y' }} NFL Odds</h2>
+    <ul>
+      <li *ngFor="let game of odds">
+        {{ game.homeTeam }}: {{game.homeTeamOdds}} vs {{ game.awayTeam }}: {{game.awayTeamOdds}} on {{ game.dateOfGame | date: 'shortDate' }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="section weather-section">
+    <h2>{{ today | date: 'MMMM d, y' }} Weather</h2>
+    <p *ngIf="weather">{{ weatherDescription }} and {{ weather.current_weather.temperature }}&#8457;</p>
+    <p *ngIf="weatherDescription == ''">Loading weather information...</p>
+  </div>
+
+  <div class="section calendar-section">
+    <div class="section clock-section">
+      <h2>{{ time | date: 'shortTime' }}</h2>
+    </div>
+    <h2>{{ today | date: 'MMMM d, y' }} Calendar</h2>
+    <mat-calendar [(ngModel)]="selectedDate" (selectedChange)="onDateChange()" [dateClass]="dateClass"></mat-calendar>
+    <p *ngIf="events.length === 0">No events scheduled for {{ selectedDate | date: 'MMMM d, y' }}.</p>
+    <ul *ngIf="events.length > 0">
+      <li *ngFor="let event of events">
+        {{ event.startTime | date: 'shortTime' }} - {{ event.endTime | date: 'shortTime' }}: {{ event.title }}
+      </li>
+    </ul>
+    <button mat-raised-button (click)="openEventDialog()">Add Event</button>
+  </div>
+</div>
